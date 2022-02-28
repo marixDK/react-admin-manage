@@ -4,7 +4,7 @@
 // npm i --save-dev @types/loadable__component 类型
 import loadable from '@loadable/component'
 
-const Login = loadable(() => import("../views/login"));
+const Login = loadable(() => import("@/views/login"));
 /**
  * @description 默认的菜单项
  */

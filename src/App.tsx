@@ -4,7 +4,6 @@ import defaultRoutes from "./router";
 
 const App: React.FC = () => {
   const element = useRoutes(defaultRoutes);
-  console.log(element);
   return <>{element}</>;
 };
 
