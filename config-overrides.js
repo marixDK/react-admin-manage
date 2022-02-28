@@ -1,6 +1,6 @@
 /* config-overrides.js */
 const path = require('path')
-const { override, addWebpackAlias, addPostcssPlugins } = require('customize-cra');
+const { override, addWebpackAlias, addPostcssPlugins, addDecoratorsLegacy } = require('customize-cra');
 
 /* config-overrides.js */
 module.exports = override(
@@ -11,5 +11,7 @@ module.exports = override(
   addPostcssPlugins([
     require('tailwindcss'),
     require('autoprefixer')
-  ])
+  ]),
+  // 配置装饰器
+  addDecoratorsLegacy
 )
