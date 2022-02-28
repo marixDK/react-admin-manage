@@ -1,0 +1,12 @@
+/*
+* 将 Tailwind 添加到你的 CSS 代码中
+* vscode 强迫症一般都会使用 stylelint 插件去格式化自己的 css，但是这个插件会和 tailwindcss 起冲突，原因是因为 stylelint 不认识 tailwind 的 at-rule 规则。
+* 所以下面三个会报警告，要用import 引入的写法
+*/
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
