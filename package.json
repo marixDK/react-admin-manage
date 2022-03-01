@@ -30,7 +30,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "jsx-a11y/anchor-is-valid": "off",
+      "no-script-url": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -47,11 +51,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.17.2",
     "@types/loadable__component": "^5.13.4",
-    "autoprefixer": "^10.4.2",
     "customize-cra": "^1.0.0",
     "node-sass": "^7.0.1",
-    "postcss": "^8.4.7",
     "react-app-rewired": "^2.2.1",
-    "tailwindcss": "^3.0.23"
+    "sass-resources-loader": "^2.2.4"
   }
 }
