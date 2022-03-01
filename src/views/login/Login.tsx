@@ -1,6 +1,7 @@
 import React from "react";
 import "./Login.scss";
 import { Tabs } from "antd";
+import { LoginAccount, LoginPhone } from "./components";
 
 const Login: React.FC = () => {
   const { TabPane } = Tabs;
@@ -27,14 +28,11 @@ const Login: React.FC = () => {
       </header>
       <div className="info">
         <Tabs defaultActiveKey="1" onChange={callback}>
-          <TabPane tab="Tab 1" key="1">
-            Content of Tab Pane 1
+          <TabPane tab="账号密码登录" key="account">
+            <LoginAccount></LoginAccount>
           </TabPane>
-          <TabPane tab="Tab 2" key="2">
+          <TabPane tab="手机号登录" key="phone">
             Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            Content of Tab Pane 3
           </TabPane>
         </Tabs>
       </div>
