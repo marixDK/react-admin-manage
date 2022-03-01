@@ -13,5 +13,5 @@ module.exports = override(
     require('autoprefixer')
   ]),
   // 配置装饰器
-  addDecoratorsLegacy
+  addDecoratorsLegacy()
 )
