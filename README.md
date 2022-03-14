@@ -2,7 +2,7 @@
 
 ## 简介
 
-react-jira 是一个基于react17开发的任务管理系统。集合了`webpack4`,`react-router`,`TypeScript`,`css-in-js`等主流技术，提供项目列表、详情、编辑删除；任务列表；看板列表、排序等功能
+react-jira 是一个基于 react17 开发的任务管理系统。集合了`webpack5`,`react-router`,`TypeScript`,`css-in-js`等主流技术，提供项目列表、详情、编辑删除；任务列表；看板列表、排序等功能
 
 ## 在线预览
 
