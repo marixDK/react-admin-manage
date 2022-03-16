@@ -1,41 +1,46 @@
-# react17
+# Getting Started with Create React App
 
-## 简介
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-react-jira 是一个基于 react17 开发的任务管理系统。集合了`webpack5`,`react-router`,`TypeScript`,`css-in-js`等主流技术，提供项目列表、详情、编辑删除；任务列表；看板列表、排序等功能
+## Available Scripts
 
-## 在线预览
+In the project directory, you can run:
 
-- [🎉 react17-dirt](http://react.lubaojun.com)
+### `npm start`
 
-## 准备
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- [node（>= v12.0）](http://nodejs.org/) 和 [git](https://git-scm.com/) - 开发环境准备
-- [vue-cli >= 4.5.0](https://cli.vuejs.org/) - 熟悉 Vue.js 开发的标准工具
-- [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
-- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [Vue-Router](https://router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [Element-plus](https://element-plus.gitee.io/) - ui 基本使用
-- [Pinia](https://pinia.vuejs.org/) - 新一代的状态管理库
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-## 运行项目
+### `npm test`
 
-安装依赖
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```
-npm install
-```
+### `npm run build`
 
-启动本地调试
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```
-npm run serve:dev
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-编译打包，生成编译后的目录
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```
-npm run build:dev
-```
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
