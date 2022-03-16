@@ -55,16 +55,12 @@
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@types/loadable__component": "^5.13.4",
-    "customize-cra": "^1.0.0",
     "eslint-config-prettier": "^6.15.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.5",
-    "node-sass": "^7.0.1",
-    "prettier": "^2.2.1",
-    "react-app-rewired": "^2.2.1",
-    "sass-resources-loader": "^2.2.4"
+    "prettier": "^2.2.1"
   },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
- }
+  }
 }
