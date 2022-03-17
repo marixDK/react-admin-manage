@@ -18,14 +18,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
   },
-  "baseUrl": ".",
-  "paths": {
-    "@/*": [
-      "src/*"
-    ]
-  },
+  // 解决TS2304错误：找不到名称xxx
+  "typeRoots": [
+    "./node_modules/@types/",
+    "./types"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",

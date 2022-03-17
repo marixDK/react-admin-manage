@@ -1,6 +1,6 @@
-import Discover from "../views/Discover";
-import Follow from "../views/Follow";
-import Login from "../views/global/login";
+import Discover from "@/views/Discover";
+import Follow from "@/views/Follow";
+import Login from "@/views/global/login";
 /**
  * @description 默认的菜单项
  */

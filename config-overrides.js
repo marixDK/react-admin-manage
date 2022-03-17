@@ -3,7 +3,6 @@ const path = require("path");
 const {
   override,
   addWebpackAlias,
-  addPostcssPlugins,
   addDecoratorsLegacy,
   adjustStyleLoaders,
 } = require("customize-cra");
@@ -15,7 +14,6 @@ module.exports = override(
     //路径别名
     "@": path.resolve(__dirname, "src"),
   }),
-  addPostcssPlugins([require("tailwindcss"), require("autoprefixer")]),
   // 配置装饰器
   addDecoratorsLegacy(),
   // 配置指定文件为sass全局文件，可以不用导入就可以使用
