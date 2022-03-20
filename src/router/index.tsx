@@ -1,7 +1,7 @@
 import { lazy } from "react";
 const Discover = lazy(() => import("@/views/Discover"));
 const Follow = lazy(() => import("@/views/Follow"));
-const Login = lazy(() => import("@/views/global/login"));
+const Login = lazy(() => import("@/views/global/Login"));
 /**
  * @description 默认的菜单项
  */
