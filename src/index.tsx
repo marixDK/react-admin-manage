@@ -10,6 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       {/* loading配置 可以根据自己喜欢用GIF 或者loading插件 */}
+
       <Suspense fallback={<span>loading...</span>}>
         <App />
       </Suspense>

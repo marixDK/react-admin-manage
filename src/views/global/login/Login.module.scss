@@ -1,4 +1,33 @@
-.login-form {
-  color: red;
-  background-color: blue;
+#login {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  .login-bg {
+    // 在 sass 中，使用 ~ 为前缀就会变成动态的，默认会去寻找 node_modules 下的模块，以 node_modules为原点
+    background-image: url("~@/assets/image/login-bg.svg");
+    background-position: 100%;
+    width: 52%;
+    height: 100%;
+    margin-right: 160px;
+    position: relative;
+    .login-desc {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
+      color: white;
+      line-height: 40px;
+      h3 {
+        color: white;
+        font-size: 26px;
+      }
+      img {
+        width: 360px;
+        margin-bottom: 20px;
+      }
+    }
+  }
 }
