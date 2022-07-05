@@ -10,7 +10,12 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  return <div className='App'></div>;
+  return (
+    <div className='App'>
+      <div>hhhhhhh</div>
+      <div>啦啦啦啦啦</div>
+    </div>
+  );
 }
 
 export default App;
