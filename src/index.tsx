@@ -1,22 +1,13 @@
-import React, { Suspense } from "react";
-import ReactDOM from "react-dom";
-// react组件全局样式引入
-import "@/style/index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      {/* loading配置 可以根据自己喜欢用GIF 或者loading插件 */}
-
-      <Suspense fallback={<span>loading...</span>}>
-        <App />
-      </Suspense>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

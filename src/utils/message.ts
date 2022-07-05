@@ -1,4 +1,4 @@
-import { message } from "antd";
+import { message } from 'antd';
 
 const infoMessage = (msg: string, duration = 3) => {
   message.success(msg, duration);
