@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react';
-import { getData } from './api/login';
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import appRoutes from './routes';
 
-const fetchData = async () => {
-  const res = await getData();
-  console.log(res);
-};
-
-function App() {
-  useEffect(() => {
-    fetchData();
-  }, []);
+const App: React.FC = () => {
+  const element = useRoutes(appRoutes);
   return (
-    <div className='App'>
-      <div>hhhhhhh</div>
-      <div>啦啦啦啦啦</div>
-    </div>
+    // 用React.Suspense包裹懒加载组件
+    <React.Suspense fallback={<div>Loading</div>}>{element}</React.Suspense>
   );
-}
+};
 
 export default App;
