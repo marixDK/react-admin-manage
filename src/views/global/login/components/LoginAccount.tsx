@@ -18,7 +18,7 @@ const initialValues: LoginParams = {
 };
 
 const LoginAccount: React.FC = () => {
-  const [imgUrl, setImgUrl] = useState('');
+  const [imgUrl, setImgUrl] = useState<string>('');
 
   const fetchVerify = async () => {
     let {
