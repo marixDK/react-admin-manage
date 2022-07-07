@@ -6,6 +6,7 @@
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
+import { BASE_URL } from '../config';
 import { errorMessage } from './message';
 import NProgress from './progress';
 
@@ -14,7 +15,7 @@ import NProgress from './progress';
 
 /* 创建axios实例 */
 const service: AxiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // api的base_url
+  baseURL: BASE_URL, // api的base_url
   timeout: 5000, // 请求超过时间
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
