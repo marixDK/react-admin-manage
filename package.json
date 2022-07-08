@@ -57,6 +57,9 @@
     "prettier": "2.7.1",
     "react-app-rewired": "^2.2.1",
     "sass-resources-loader": "^2.2.4",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^4.0.0",
     "typescript-plugin-css-modules": "^3.4.0"
   },
   "lint-staged": {

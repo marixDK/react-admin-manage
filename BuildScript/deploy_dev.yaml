@@ -1,0 +1,192 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: leanstar-portal-mobile
+  namespace: lv01-57-portal-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: leanstar-portal-mobile
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: leanstar-portal-mobile
+    spec:
+      volumes:
+        - name: configmap-nginxconf
+          configMap:
+            name: nginx-config-map
+        - name: configmap-env-configs
+          configMap:
+            name: env-configs
+      containers:
+        - image: [image]
+          imagePullPolicy: Always
+          name: leanstar-portal-mobile
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /index.html
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /index.html
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: '0.2'
+              memory: 0.25G
+            limits:
+              cpu: '1'
+              memory: 0.25G
+          volumeMounts:
+            - mountPath: /opt/nginx/conf/nginx.conf
+              subPath: nginx.conf
+              name: configmap-nginxconf
+            - mountPath: /opt/public/config/config.js
+              subPath: config.js
+              name: configmap-env-configs
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: leanstar-portal-mobile
+  namespace: lv01-57-portal-dev
+spec:
+  ports:
+    - port: 8080
+      name: leanstar-portal-mobile-8080
+      targetPort: 8080
+  selector:
+    run: leanstar-portal-mobile
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: leanstar-portal-mobile
+  namespace: lv01-57-portal-dev
+  annotations:
+    haproxy.router.openshift.io/disable_cookies: 'true'
+spec:
+  host: leanstar-mobile-dev.paas.cmbchina.cn
+  port:
+    targetPort: leanstar-portal-mobile-8080
+  to:
+    kind: Service
+    name: leanstar-portal-mobile
+    weight: 100
+  wildcardPolicy: None
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: env-configs
+  namespace: lv01-57-portal-dev
+  annotations:
+    resource.alauda.io/description: 配置文件
+data:
+  config.js: |
+    (function (win) {
+        win.openTest = 'true';
+    }(window))
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config-map
+  namespace: lv01-57-portal-dev
+  annotations:
+    resource.alauda.io/description: nginx配置文件
+data:
+  nginx.conf: |
+    worker_processes auto;
+    daemon off;
+
+    error_log stderr;
+    events { worker_connections 2048; }
+
+    http {
+      access_log off;
+      default_type application/octet-stream;
+      client_header_buffer_size 64k;
+      large_client_header_buffers 4 64k;
+      include mime.types;
+      sendfile on;
+      keepalive_timeout 20;
+      client_header_timeout 20;
+      client_body_timeout 20;
+      reset_timedout_connection on;
+      send_timeout 20;
+      gzip on;
+      tcp_nopush on;
+      port_in_redirect off; # Ensure that redirects don't include the internal container PORT - <%= ENV["PORT"] %>
+      server_tokens off;
+      client_max_body_size 10M;
+      underscores_in_headers on;
+
+      server {
+        listen       8080 default_server;
+        server_name  localhost;
+
+        location / {
+         root   /opt/public;
+         index  index.html index.htm;
+         try_files $uri $uri/ /index.html;
+         add_header Cache-Control no-store;
+         add_header 'Access-Control-Allow-Origin' '*' always;
+        }
+
+        location ~ .*.(gif|jpg|png|svg|css|js) {
+         root   /opt/public;
+         try_files $uri $uri/ /index.html;
+         expires 15d;
+         add_header 'Access-Control-Allow-Origin' '*' always;
+        }
+
+        location ^~ /api/ {
+         proxy_pass http://leanstar-mobile-bff-dev.paas.cmbchina.cn/;
+        }
+
+        location ^~ /file-preview-front {
+          proxy_pass  http://leanstar-mobile-bff-dev.paas.cmbchina.cn/file-preview-front;
+        }
+
+        location ^~ /preview-server {
+          proxy_pass  http://leanstar-mobile-bff-dev.paas.cmbchina.cn/preview-server;
+        }
+
+        location ^~ /file-online-front {
+          proxy_pass  http://leanstar-mobile-bff-dev.paas.cmbchina.cn/file-online-front;
+        }
+
+        location ^~ /aspose-server {
+          proxy_pass  http://leanstar-mobile-bff-dev.paas.cmbchina.cn/aspose-server;
+        }
+
+        location ~ /front-rest-log/ {
+         proxy_pass http://lf12-32-gateway-st.paasst.cmbchina.cn;
+        }
+
+      }
+    }

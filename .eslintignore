@@ -1,9 +1,14 @@
-# 不用检测的文件
+# 不用检测的文件, 加快打包时间
+# .eslintignore的路径前缀是/或者不写，但不要写./
 build
+BuildScript
+dist
+docs
+nginx
 node_modules
 public
-dist
 src/assets
+Dockerfile
 README.md
 package.json
 package-lock.json
