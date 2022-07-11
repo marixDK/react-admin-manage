@@ -9,6 +9,7 @@ const publicRoutes = [
     name: '登陆页',
     key: '/login',
     element: <Login />,
+    children: [],
   },
 ];
 
