@@ -16,9 +16,9 @@ const asyncRoutes = [
     element: <Layout />,
     children: [
       {
-        path: '/home',
+        path: 'home',
         name: '首页',
-        key: '/home',
+        key: 'home',
         element: <Home />,
         children: [],
       },

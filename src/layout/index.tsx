@@ -1,8 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Layout: React.FC = () => {
-  return <Outlet />;
+  const token = Cookies.get('token');
+  return token ? <Outlet /> : <Navigate to='/login' />;
 };
 
 export default Layout;
