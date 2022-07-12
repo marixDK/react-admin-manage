@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
+import ErrorBoundary from '@/components/error-boundary';
+import { FullPageErrorFallback } from '@/components/error-boundary/lib';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root'),
 );
