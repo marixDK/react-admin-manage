@@ -1,0 +1,30 @@
+@mixin sidebar-style($width, $position:relative) {
+  // 展开的侧边栏
+  .app-sidebar {
+    transition: wdith 0.28s;
+    width: $width;
+    .sidebar-logo {
+      height:  50px;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+      i {
+        font-size: 34px;
+        line-height: 50px;
+        color: #409eff;
+      }
+    }
+  }
+}
+
+#layout {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  .layout-container {
+    height: 100%;
+    display: flex;
+    $width: $base-left-menu-width;
+    @include sidebar-style($width);
+  }
+}

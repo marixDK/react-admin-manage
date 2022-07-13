@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 import ErrorBoundary from '@/components/error-boundary';
 import { FullPageErrorFallback } from '@/components/error-boundary/lib';
+// 引入全局阿里图标库
+import '@/assets/font/iconfont.css';
 
 ReactDOM.render(
   <React.StrictMode>
