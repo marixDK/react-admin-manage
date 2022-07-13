@@ -9,3 +9,14 @@ export const getCode = (): any => {
     method: 'get',
   });
 };
+
+// 登陆获取用户信息的接口
+export const signIn = (data: object): any => {
+  return request({
+    url: 'api/auth/login',
+    method: 'post',
+    // baseURL:"",
+    // headers:{'Content-Type':'multipart/form-data'},
+    data,
+  });
+};

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
-import { getCode } from '@/api/login';
+import { getCode, signIn } from '@/api/login';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 // 规范：文件中的类型定义，应使用PascalCase拼写法命名，并写在组件实现的前面
 interface LoginParams {
@@ -8,23 +10,30 @@ interface LoginParams {
   password: string;
   verifyCode: string;
   captchaId: string;
+  remember: boolean;
 }
 
-const initialValues: LoginParams = {
-  username: '',
-  password: '',
-  verifyCode: '',
-  captchaId: '',
-};
+// 在组件外部(但不在组件范围内，防止被重新初始化)初始化变量
+// react文档建议使用useRef来保持任意的可变值
+// let captchaId: string;
 
 const LoginAccount: React.FC = () => {
+  // 通过 Form.useForm 对表单数据域进行交互
+  const [form] = Form.useForm();
+
+  const captchaId = useRef('');
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [imgUrl, setImgUrl] = useState<string>('');
+
+  const navigate = useNavigate();
 
   const fetchVerify = async () => {
     let {
       data: { id, img },
     } = await getCode();
-    initialValues.captchaId = id;
+    captchaId.current = id;
     setImgUrl(img);
   };
 
@@ -32,14 +41,30 @@ const LoginAccount: React.FC = () => {
     fetchVerify();
   }, []);
 
+  const onFinish = async (loginForm: LoginParams) => {
+    try {
+      setLoading(true);
+      loginForm.captchaId = captchaId.current;
+      const {
+        data: { token },
+      } = await signIn(loginForm);
+      Cookies.set('token', token);
+    } finally {
+      setLoading(false);
+      navigate('/home');
+    }
+  };
+
   return (
     <Form
       name='basic'
       labelCol={{ span: 0 }}
       wrapperCol={{ span: 24 }}
-      initialValues={initialValues}
+      form={form}
+      initialValues={{ remember: true }}
       autoComplete='off'
-      style={{ width: '350px' }}>
+      style={{ width: '350px' }}
+      onFinish={onFinish}>
       <Form.Item
         name='username'
         rules={[{ required: true, message: '请输入账号!' }]}>
@@ -72,13 +97,17 @@ const LoginAccount: React.FC = () => {
         </Row>
       </Form.Item>
 
-      <Form.Item name='remember' valuePropName='checked'>
+      <Form.Item>
         <Row>
           <Col span={18}>
-            <Checkbox>自动登录</Checkbox>
+            <Form.Item name='remember' valuePropName='checked'>
+              <Checkbox>自动登录</Checkbox>
+            </Form.Item>
           </Col>
           <Col span={6}>
-            <Button type='link'>忘记密码?</Button>
+            <Form.Item>
+              <Button type='link'>忘记密码?</Button>
+            </Form.Item>
           </Col>
         </Row>
       </Form.Item>
@@ -88,7 +117,8 @@ const LoginAccount: React.FC = () => {
           size='large'
           style={{ width: '100%' }}
           type='primary'
-          htmlType='submit'>
+          htmlType='submit'
+          loading={loading}>
           登陆
         </Button>
       </Form.Item>

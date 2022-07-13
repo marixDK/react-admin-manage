@@ -18,6 +18,7 @@ const LoginPhone: React.FC = () => {
     // console.log('运行了');
     setTime(60);
     // 注意，不要使用 setTime(time-1) ： 闭包问题会导致time一直为-1
+    // 通过回调函数来调用，回调函数返回的是最新的 state
     interval = window.setInterval(() => setTime((t) => --t), 1000);
   };
   useEffect(() => {
