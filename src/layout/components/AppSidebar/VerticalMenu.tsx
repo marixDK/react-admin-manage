@@ -1,20 +1,53 @@
 import React from 'react';
 import { Menu } from 'antd';
+import type { MenuProps } from 'antd';
 
-const items = [
+type MenuItem = Required<MenuProps>['items'][number];
+
+const items: MenuItem[] = [
   {
     label: '首页',
     key: '1',
-    icon: 'iconfont icon-index',
-    children: [],
-    type: null,
-  },
+    icon: <i className='iconfont icon-index'></i>,
+  }, // 菜单项务必填写 key
   {
     label: '系统管理',
     key: '2',
-    icon: 'iconfont icon-setup',
-    children: [],
-    type: null,
+    icon: <i className='iconfont icon-setup'></i>,
+    children: [
+      {
+        label: '用户管理',
+        key: '21',
+        icon: '',
+      },
+      {
+        label: '角色管理',
+        key: '22',
+        icon: '',
+      },
+      {
+        label: '菜单管理',
+        key: '23',
+        icon: '',
+      },
+      {
+        label: '字典管理',
+        key: '24',
+        icon: '',
+      },
+    ],
+  },
+  {
+    label: '编辑管理',
+    key: '3',
+    icon: <i className='iconfont icon-edit'></i>,
+    children: [
+      {
+        label: '文章管理',
+        key: '31',
+        icon: '',
+      },
+    ],
   },
 ];
 
@@ -28,7 +61,8 @@ const VerticalMenu: React.FC = () => {
       mode='inline'
       theme='light'
       onClick={goPage}
-      items={items}></Menu>
+      items={items}
+    />
   );
 };
 
