@@ -49,9 +49,14 @@ const LoginAccount: React.FC = () => {
         data: { token },
       } = await signIn(loginForm);
       Cookies.set('token', token);
+      // 组件卸载了，但是状态值（如：setState，useState）依然更改了，或者处于渲染中，
+      // 直接卸载组件，可能会导致内存泄漏
+      // 这里用定时器，解决finally还没执行渲染完毕就跳转，导致内存泄漏
+      setTimeout(() => {
+        navigate('/index');
+      }, 300);
     } finally {
       setLoading(false);
-      navigate('/home');
     }
   };
 
