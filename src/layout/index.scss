@@ -1,8 +1,11 @@
 @mixin sidebar-style($width, $position:relative) {
   // 展开的侧边栏
   .app-sidebar {
+    height: 100%;
     transition: wdith 0.28s;
     width: $width;
+    display: flex;
+    flex-direction: column;
     .sidebar-logo {
       height:  50px;
       position: relative;
@@ -13,6 +16,13 @@
         line-height: 50px;
         color: #409eff;
       }
+    }
+    .vertical-menu {
+      flex: 1;
+      // 高度不能超过，不然会把顶部的logo遮住了
+      max-height: calc(100% - 50px);
+      // 超出不隐藏，滚动条效果
+      overflow: auto;
     }
   }
 }
