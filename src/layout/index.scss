@@ -8,13 +8,21 @@
     flex-direction: column;
     .sidebar-logo {
       height:  50px;
-      position: relative;
-      text-align: center;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      // 空间不足换行
+      flex-wrap: wrap;
       i {
         font-size: 34px;
+        font-weight: 700;
         line-height: 50px;
-        color: #409eff;
+        color: #303133;
+      }
+      h3 {
+        font-size: 20px;
+        line-height: 50px;
+        font-weight: 700;
+        color: #303133;
       }
     }
     .vertical-menu {

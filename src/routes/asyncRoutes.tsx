@@ -4,6 +4,9 @@ import { lazy } from 'react';
 const Layout = lazy(() => import('@/Layout'));
 const Index = lazy(() => import('@/views/modules/Index'));
 const User = lazy(() => import('@/views/modules/sys/User'));
+const Role = lazy(() => import('@/views/modules/sys/Role'));
+const Menu = lazy(() => import('@/views/modules/sys/Menu'));
+const Dict = lazy(() => import('@/views/modules/sys/Dict'));
 
 // 这里要使用tsx文件，不然使用<Home />组件的时候会报如下错误
 // “Login”表示值，但在此处用作类型。是否指“类型 Login”
@@ -11,7 +14,7 @@ const User = lazy(() => import('@/views/modules/sys/User'));
 const asyncRoutes = [
   {
     path: '/',
-    name: 'Layout',
+    name: '首页',
     key: '/',
     element: <Layout />,
     children: [
@@ -22,20 +25,41 @@ const asyncRoutes = [
         element: <Index />,
         children: [],
       },
+    ],
+  },
+  {
+    path: 'sys',
+    name: '系统管理',
+    key: '/sys',
+    element: <Layout />,
+    children: [
       {
-        path: 'sys',
-        name: '系统管理',
-        key: '/sys',
+        path: 'user',
+        name: '用户管理',
+        key: '/sys/user',
         element: <User />,
-        children: [
-          {
-            path: 'user',
-            name: '用户管理',
-            key: '/sys/user',
-            element: <User />,
-            children: [],
-          },
-        ],
+        children: [],
+      },
+      {
+        path: 'role',
+        name: '角色管理',
+        key: '/sys/role',
+        element: <Role />,
+        children: [],
+      },
+      {
+        path: 'menu',
+        name: '菜单管理',
+        key: '/sys/menu',
+        element: <Menu />,
+        children: [],
+      },
+      {
+        path: 'dict',
+        name: '字典管理',
+        key: '/sys/dict',
+        element: <Dict />,
+        children: [],
       },
     ],
   },
