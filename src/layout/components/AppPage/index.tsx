@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, useOutlet, Outlet } from 'react-router-dom';
+import { useLocation, useOutlet } from 'react-router-dom';
 // 结合react-transition-group 实现路由切换动画
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import './index.scss';
