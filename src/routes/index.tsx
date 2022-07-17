@@ -1,7 +1,8 @@
-import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes, Navigate } from 'react-router-dom';
 import { Suspense } from 'react';
 import publicRoutes from './publicRoutes';
 import asyncRoutes from './asyncRoutes';
+import Cookies from 'js-cookie';
 
 // 无法将AppRoutes代码提取到AppRouter中，用下面的代码代替
 // 会报错：useRoutes() may be used only in the context of a <Router> component.
@@ -19,6 +20,10 @@ const AppRoutes: React.FC = () => {
 };
 
 const AppRouter: React.FC = () => {
+  const token = Cookies.get('token');
+  if (!token) {
+    return <Navigate to='/login' />;
+  }
   return (
     // BrowserRouter 使用时，用来包住其它需要路由的组件，所以通常会需要在你的应用最外层用它
     <BrowserRouter basename='/'>
