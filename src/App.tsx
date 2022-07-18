@@ -1,10 +1,10 @@
 import React from 'react';
-import AppRouter from './routes';
+import AppRoutes from './routes';
 
 const App: React.FC = () => {
   return (
     <>
-      <AppRouter />
+      <AppRoutes />
     </>
   );
 };
