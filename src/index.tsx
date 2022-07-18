@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppRoutes from './routes';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 import ErrorBoundary from '@/components/error-boundary';
@@ -11,7 +11,7 @@ import '@/assets/font/iconfont.css';
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary fallbackRender={FullPageErrorFallback}>
-      <App />
+      <AppRoutes />
     </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root'),

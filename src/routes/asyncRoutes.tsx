@@ -1,7 +1,10 @@
 import { lazy } from 'react';
 
 // 在客户端渲染的场景下优先使用React.lazy搭配React.Suspense实现组件懒加载
-const Layout = lazy(() => import('@/Layout'));
+// 切换页面会出现闪屏现象
+// 解决思路：公共页面不采用懒加载的方式 并在App.tsx去除Suspense的包裹
+import App from '@/App';
+import Layout from '@/Layout';
 const Index = lazy(() => import('@/views/modules/Index'));
 const User = lazy(() => import('@/views/modules/sys/User'));
 const Role = lazy(() => import('@/views/modules/sys/Role'));
@@ -14,50 +17,49 @@ const Dict = lazy(() => import('@/views/modules/sys/Dict'));
 const asyncRoutes = [
   {
     path: '/',
-    name: '首页',
+    name: 'root',
     key: '/',
-    element: <Layout />,
-    children: [
-      {
-        path: 'index',
-        name: '首页',
-        key: '/index',
-        element: <Index />,
-        children: [],
-      },
-    ],
+    element: <App />,
+    children: [],
+  },
+  {
+    path: 'index',
+    name: '首页',
+    key: 'index',
+    element: <Index />,
+    children: [],
   },
   {
     path: 'sys',
     name: '系统管理',
-    key: '/sys',
+    key: 'sys',
     element: <Layout />,
     children: [
       {
         path: 'user',
         name: '用户管理',
-        key: '/sys/user',
+        key: 'sys/user',
         element: <User />,
         children: [],
       },
       {
         path: 'role',
         name: '角色管理',
-        key: '/sys/role',
+        key: 'sys/role',
         element: <Role />,
         children: [],
       },
       {
         path: 'menu',
         name: '菜单管理',
-        key: '/sys/menu',
+        key: 'sys/menu',
         element: <Menu />,
         children: [],
       },
       {
         path: 'dict',
         name: '字典管理',
-        key: '/sys/dict',
+        key: 'sys/dict',
         element: <Dict />,
         children: [],
       },
