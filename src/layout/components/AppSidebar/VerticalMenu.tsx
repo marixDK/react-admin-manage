@@ -138,8 +138,8 @@ const VerticalMenu: React.FC = () => {
 
   const navigate = useNavigate();
   const goPage = ({ item, key, keyPath, domEvent }) => {
-    console.log(key);
-    console.log('跳转页面');
+    // console.log(key);
+    // console.log('跳转页面');
     setSelectedKeys([key]);
     navigate(key);
   };

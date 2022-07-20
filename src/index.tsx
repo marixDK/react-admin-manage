@@ -9,11 +9,15 @@ import { FullPageErrorFallback } from '@/components/error-boundary/lib';
 import '@/assets/font/iconfont.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ErrorBoundary fallbackRender={FullPageErrorFallback}>
-      <App />
-    </ErrorBoundary>
-  </React.StrictMode>,
+  // StrictMode会开启 react 中的严格模式
+  // 使用某些第三方库，特别涉及到css效果可能会有如下报错信息，删除或者不用管，不会影响生产
+  // findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead,
+  // add a ref directly to the element you want to reference. Learn more about using refs safely here
+  // <React.StrictMode>
+  <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+    <App />
+  </ErrorBoundary>,
+  // </React.StrictMode>,
   document.getElementById('root'),
 );
 

@@ -4,7 +4,6 @@
 // 解决思路：公共页面不采用懒加载的方式 并在App.tsx去除Suspense的包裹
 import Login from '@/views/global/Login';
 import Register from '@/views/global/Register';
-import Error404 from '../views/global/Error/404';
 
 const publicRoutes = [
   {
@@ -21,13 +20,13 @@ const publicRoutes = [
     element: <Register />,
     children: [],
   },
-  {
-    path: '*',
-    name: '404',
-    key: '/error-404',
-    element: <Error404 />,
-    children: [],
-  },
+  // {
+  //   path: '*',
+  //   name: '404',
+  //   key: '/error-404',
+  //   element: <Error404 />,
+  //   children: [],
+  // },
 ];
 
 export default publicRoutes;

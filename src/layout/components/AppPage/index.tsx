@@ -9,7 +9,7 @@ const AppPage: React.FC = () => {
   const outlet = useOutlet();
   // 监听路由变化
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
   }, [location]);
   return (
     // SwitchTransition参考vue的out-in的模式实现的，控制组件进入和离开动画的加载顺序，避免只能同时加载

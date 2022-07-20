@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
 
 // 在客户端渲染的场景下优先使用React.lazy搭配React.Suspense实现组件懒加载
 // 切换页面会出现闪屏现象
@@ -15,13 +14,6 @@ const Dict = lazy(() => import('@/views/modules/sys/Dict'));
 // “Login”表示值，但在此处用作类型。是否指“类型 Login”
 
 const asyncRoutes = [
-  // 嵌套路由重定向, 在要实现重定向的一级路由声明两次element属性，一个代表当前路径所展示的页面，另一个表示重定向路径。
-  {
-    path: '/',
-    name: 'root',
-    key: '/',
-    element: <Navigate to='/index' />,
-  },
   {
     path: '/',
     name: 'root',
@@ -37,6 +29,7 @@ const asyncRoutes = [
       },
     ],
   },
+  // V6使用路由嵌套及路由重定向方法,子路由路径不用加"/"，v6中会自动拼接
   {
     path: 'sys',
     name: '系统管理',
