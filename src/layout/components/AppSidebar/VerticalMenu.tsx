@@ -130,14 +130,14 @@ const menuItems = [
 const VerticalMenu: React.FC = () => {
   const [selectedKeys, setSelectedKeys] = useState(['/index']);
   const [openKeys, setOpenKeys] = useState(['/index']);
-  const onOpenChange = (keys) => {
-    // 回调参数：所有展开的submenu的key数组，可以设置只展开最后点击的那项
-    // console.log(keys);
-    setOpenKeys(keys);
+  // 回调参数：所有展开的submenu的key数组
+  const onOpenChange = (openKeys) => {
+    console.log(openKeys);
+    setOpenKeys(openKeys);
   };
 
   const navigate = useNavigate();
-  const goPage = ({ item, key, keyPath, domEvent }) => {
+  const goPage = ({ key }) => {
     // console.log(key);
     // console.log('跳转页面');
     setSelectedKeys([key]);
@@ -152,7 +152,6 @@ const VerticalMenu: React.FC = () => {
       className='vertical-menu'
       mode='inline'
       theme='light'
-      // @ts-ignore
       // 注释掉莫名的类型错误，也可以在头部用@ts-nocheck，忽略整个文件
       items={menuItems}
       onOpenChange={onOpenChange}

@@ -8,7 +8,7 @@ const Permission: React.FC = () => {
     // 两秒后返回登陆页
     setTimeout(() => navigate('/login', { replace: true }), 100);
   });
-  return <div></div>;
+  return null;
 };
 
 export default Permission;
