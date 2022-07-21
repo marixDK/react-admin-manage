@@ -8,7 +8,7 @@ import { Suspense } from 'react';
 import asyncRoutes from './asyncRoutes';
 import publicRoutes from './publicRoutes';
 import Cookies from 'js-cookie';
-import Error404 from '../views/global/Error/404';
+import Error404 from '../views/global/error/404';
 import Permission from './Permission';
 
 // 路由白名单
@@ -32,13 +32,13 @@ const GetRoutes: React.FC = () => {
   const routes = useRoutes([
     ...publicRoutes,
     // 嵌套路由重定向, 在要实现重定向的一级路由声明两次element属性，一个代表当前路径所展示的页面，另一个表示重定向路径。
-    { path: '/', element: <Navigate to='/index' /> },
+    { path: '/', element: <Navigate to='/home' /> },
     ...asyncRoutes,
     { path: '/*', element: <Error404 /> },
   ]);
   const noLoginRoutes = useRoutes([
     ...publicRoutes,
-    { path: '/', element: <Navigate to='/index' /> },
+    { path: '/', element: <Navigate to='/home' /> },
     { path: '/*', element: <Permission /> },
   ]);
   // 如果是 登录页或者是注册页 正常返回要渲染的路由

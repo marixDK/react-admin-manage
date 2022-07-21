@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const menuItems = [
   {
     label: '首页',
-    key: '/index',
+    key: '/home',
     icon: <i className='iconfont icon-index'></i>,
   }, // 菜单项务必填写 key
   {
@@ -132,15 +132,16 @@ const VerticalMenu: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['/index']);
   // 回调参数：所有展开的submenu的key数组
   const onOpenChange = (openKeys) => {
-    console.log(openKeys);
+    // console.log(openKeys);
     setOpenKeys(openKeys);
   };
 
   const navigate = useNavigate();
-  const goPage = ({ key }) => {
-    // console.log(key);
+  // 点击事件默认有三个回调参数：key，keyPath，domEvent
+  const goPage = ({ key, keyPath }) => {
+    // console.log(keyPath);
     // console.log('跳转页面');
-    setSelectedKeys([key]);
+    setSelectedKeys(keyPath);
     navigate(key);
   };
   return (
