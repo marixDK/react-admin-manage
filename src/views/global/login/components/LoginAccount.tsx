@@ -52,9 +52,16 @@ const LoginAccount: React.FC = () => {
       // 组件卸载了，但是状态值（如：setState，useState）依然更改了，或者处于渲染中，
       // 直接卸载组件，可能会导致内存泄漏
       // 这里用定时器，解决finally还没执行渲染完毕就跳转，导致内存泄漏
+      const href = Cookies.get('redirectUrl');
       setTimeout(() => {
-        navigate('/home');
+        if (!href) {
+          navigate('/home');
+          return;
+        }
+        window.location.href = href;
       }, 300);
+      // 重定向链接使用后就清除，再次登陆进来默认跳转首页
+      Cookies.remove('redirectUrl');
     } finally {
       setLoading(false);
     }

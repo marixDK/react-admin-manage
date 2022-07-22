@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { useLocation, useNavigate, useResolvedPath } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const menuItems = [
   {
@@ -130,22 +130,21 @@ const menuItems = [
 const VerticalMenu: React.FC = () => {
   // 获取当前路径
   const { pathname } = useLocation();
-  //获取当前所在的目录层级
+  // 获取当前所在的目录层级
   const rank = pathname.split('/');
-  //rank = ["","sys","user"]
+  // rank = ["","sys","user"]
   let paths = [];
   switch (rank.length) {
-    case 2: //一级目录
-      paths = ['/home'];
+    case 2: // 一级目录
+      paths = ['/home']; // 空数组默认会展开/路由
       break;
-    case 3: //二级目录，要展开一个subMenu
+    case 3: // 二级目录，要展开一个subMenu
       paths = [rank.slice(0, 2).join('/')];
       break;
-    case 4: //三级目录，要展开两个subMenu
+    case 4: // 三级目录，要展开两个subMenu
       paths = [rank.slice(0, 2).join('/'), rank.slice(0, 3).join('/')];
       break;
   }
-  // console.log(paths);
   const [current, setCurrent] = useState(pathname);
   const [openKeys, setOpenKeys] = useState(paths);
 
