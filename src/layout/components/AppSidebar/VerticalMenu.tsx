@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useResolvedPath } from 'react-router-dom';
 
 const menuItems = [
   {
@@ -128,8 +128,27 @@ const menuItems = [
 ];
 
 const VerticalMenu: React.FC = () => {
-  const [selectedKeys, setSelectedKeys] = useState(['/index']);
-  const [openKeys, setOpenKeys] = useState(['/index']);
+  // 获取当前路径
+  const { pathname } = useLocation();
+  //获取当前所在的目录层级
+  const rank = pathname.split('/');
+  //rank = ["","sys","user"]
+  let paths = [];
+  switch (rank.length) {
+    case 2: //一级目录
+      paths = ['/home'];
+      break;
+    case 3: //二级目录，要展开一个subMenu
+      paths = [rank.slice(0, 2).join('/')];
+      break;
+    case 4: //三级目录，要展开两个subMenu
+      paths = [rank.slice(0, 2).join('/'), rank.slice(0, 3).join('/')];
+      break;
+  }
+  // console.log(paths);
+  const [current, setCurrent] = useState(pathname);
+  const [openKeys, setOpenKeys] = useState(paths);
+
   // 回调参数：所有展开的submenu的key数组
   const onOpenChange = (openKeys) => {
     // console.log(openKeys);
@@ -141,12 +160,14 @@ const VerticalMenu: React.FC = () => {
   const goPage = ({ key, keyPath }) => {
     // console.log(keyPath);
     // console.log('跳转页面');
-    setSelectedKeys(keyPath);
+    // setSelectedKeys(keyPath);
+    setCurrent(key);
     navigate(key);
   };
   return (
     // defaultSelectedKeys	初始选中的菜单项 key 数组
     // selectedKeys 当前选中的菜单项 key 数组
+    // defaultOpenKey只在刚开始时影响一次，openKey数据变化后就更新，也就是传说中的受控与非受控组件的应用
     // openKeys 当前展开的 SubMenu 菜单项 key 数组，用于设置只展开一项
     // onOpenChange SubMenu 展开/关闭的回调
     <Menu
@@ -156,10 +177,8 @@ const VerticalMenu: React.FC = () => {
       // 注释掉莫名的类型错误，也可以在头部用@ts-nocheck，忽略整个文件
       items={menuItems}
       onOpenChange={onOpenChange}
-      defaultOpenKeys={openKeys}
       openKeys={openKeys}
-      defaultSelectedKeys={selectedKeys}
-      selectedKeys={selectedKeys}
+      selectedKeys={[current]}
       onClick={goPage}
     />
   );

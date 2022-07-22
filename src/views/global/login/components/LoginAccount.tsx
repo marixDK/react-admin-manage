@@ -53,7 +53,7 @@ const LoginAccount: React.FC = () => {
       // 直接卸载组件，可能会导致内存泄漏
       // 这里用定时器，解决finally还没执行渲染完毕就跳转，导致内存泄漏
       setTimeout(() => {
-        navigate('/index');
+        navigate('/home');
       }, 300);
     } finally {
       setLoading(false);
