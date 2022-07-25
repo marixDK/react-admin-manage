@@ -9,6 +9,7 @@ import asyncRoutes from './asyncRoutes';
 import publicRoutes from './publicRoutes';
 import Cookies from 'js-cookie';
 import Error404 from '../views/global/error/404';
+import Error401 from '../views/global/error/401';
 import Permission from './Permission';
 
 // 路由白名单
@@ -35,6 +36,7 @@ const GetRoutes: React.FC = () => {
     { path: '/', element: <Navigate to='/home' /> },
     ...asyncRoutes,
     { path: '/*', element: <Error404 /> },
+    { path: '/401', element: <Error401 /> },
   ]);
   const noLoginRoutes = useRoutes([
     ...publicRoutes,
