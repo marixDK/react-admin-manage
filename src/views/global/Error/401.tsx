@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './error.scss';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -7,31 +7,24 @@ import cloud from '@/assets/image/cloud.png';
 
 const Error401: React.FC = () => {
   const navigate = useNavigate();
-  const toPage = useCallback(() => {
+  const toPage = () => {
     navigate('/home');
-  }, [navigate]);
+  };
   const [time, setTime] = useState(5);
   const latestTime = useRef(time);
-  // 更新latestTime
-  useEffect(() => {
-    latestTime.current = time;
-  });
-  // 执行定时器
+  latestTime.current = time;
   useEffect(() => {
     const timer = setInterval(() => {
       if (latestTime.current === 0) {
-        clearInterval(timer);
         toPage();
         return;
       }
-      // 注:在setCount中使用箭头函数是最好方式之一
       setTime((t) => --t);
     }, 1000);
-    // return 在组件被销毁之前执行的逻辑
     return () => {
       clearInterval(timer);
     };
-  }, [toPage]);
+  }, []);
 
   return (
     <div id='error-container'>

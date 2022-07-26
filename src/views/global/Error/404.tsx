@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './error.scss';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -7,31 +7,31 @@ import cloud from '@/assets/image/cloud.png';
 
 const Error404: React.FC = () => {
   const navigate = useNavigate();
-  const toPage = useCallback(() => {
+  const toPage = () => {
     navigate('/home');
-  }, [navigate]);
+  };
   const [time, setTime] = useState(5);
   const latestTime = useRef(time);
   // 更新latestTime
-  useEffect(() => {
-    latestTime.current = time;
-  });
+  latestTime.current = time;
   // 执行定时器
   useEffect(() => {
     const timer = setInterval(() => {
       if (latestTime.current === 0) {
-        clearInterval(timer);
         toPage();
         return;
       }
       // 注:在setCount中使用箭头函数是最好方式之一
       setTime((t) => --t);
     }, 1000);
-    // return 在组件被销毁之前执行的逻辑
+    // 解绑副作用
+    // 如果第二个参数是空数组 return里的清除函数，在组件被销毁之前执行
+    // 如果第二个参数不是空数组，只要状态变化，在新的副作用执行之前就会触发旧的副作用解绑
     return () => {
+      console.log('timer', timer);
       clearInterval(timer);
     };
-  }, [toPage]);
+  }, []);
 
   return (
     <div id='error-container'>

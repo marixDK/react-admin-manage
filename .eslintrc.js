@@ -20,5 +20,7 @@ module.exports = {
       },
     ],
     // "indent": ["error", 4],
+    // 关闭将函数的声明放在useEffect函数外面时，会报eslint警告
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
