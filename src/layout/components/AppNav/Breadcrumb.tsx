@@ -1,11 +1,17 @@
+import { Breadcrumb } from 'antd';
 import React from 'react';
 
-const Breadcrumb: React.FC = () => {
-  return (
-    <div>
-      <span>面包屑</span>
-    </div>
-  );
-};
+const NavBreadcrumb: React.FC = () => (
+  <Breadcrumb>
+    <Breadcrumb.Item>Home</Breadcrumb.Item>
+    <Breadcrumb.Item>
+      <span>Application Center</span>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+      <span>Application List</span>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>An Application</Breadcrumb.Item>
+  </Breadcrumb>
+);
 
-export default Breadcrumb;
+export default NavBreadcrumb;
