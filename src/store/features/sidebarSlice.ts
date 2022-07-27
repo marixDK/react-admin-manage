@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { handleSessionStorage } from '@/utils/storage';
 
 interface SidebarState {
-  opened: boolean;
+  open: boolean;
 }
 
 const initialState: SidebarState = {
   // ES6 引入了一个新的 空值合并操作符??
   // 当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数
-  opened: handleSessionStorage.get('opened') ?? true,
+  open: handleSessionStorage.get('open') ?? true,
 };
 
 // 创建状态切片
@@ -21,8 +21,8 @@ const { reducer: sidebarReducer, actions } = createSlice({
   reducers: {
     // 侧边栏切换伸缩状态方法
     toggleSidebar: (state) => {
-      state.opened = !state.opened;
-      handleSessionStorage.set('opened', state.opened);
+      state.open = !state.open;
+      handleSessionStorage.set('open', state.open);
     },
   },
 });

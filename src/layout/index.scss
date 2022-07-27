@@ -64,7 +64,15 @@
   .layout-container {
     height: 100%;
     display: flex;
-    $width: $base-left-menu-width;
+  }
+  .openSidebar {
+    $width: $base-sidebar-open;
     @include sidebar-style($width);
+    transition: $base-transition;
+  }
+  .closeSidebar {
+    $width: $base-sidebar-close;
+    @include sidebar-style($width);
+    transition: $base-transition;
   }
 }

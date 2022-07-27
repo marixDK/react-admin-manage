@@ -5,7 +5,7 @@ import { SIDEBAR_REDUCER } from '@/store/rootReducer';
 
 const Hamburder: React.FC = () => {
   // 通过useSelector拿到store中定义的value
-  const { opened } = useSelector((store) => store[SIDEBAR_REDUCER]);
+  const { open } = useSelector((store) => store[SIDEBAR_REDUCER]);
   // 通过useDispatch派发事件
   const dispatch = useDispatch();
   return (
@@ -13,7 +13,7 @@ const Hamburder: React.FC = () => {
       {/* <div onClick={() => dispatch(toggleSidebar())}>切换按钮</div>
       {sidebarState.opened ? <div>打开状态</div> : <div>关闭状态</div>} */}
       <svg
-        className={`hamburger-icon ${opened ? 'is-active' : ''} `}
+        className={`hamburger-icon ${open ? 'is-active' : ''} `}
         viewBox='0 0 1024 1024'
         xmlns='http://www.w3.org/2000/svg'
         width='64'

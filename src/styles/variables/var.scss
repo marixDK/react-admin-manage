@@ -1,5 +1,8 @@
 // 纵向左侧导航未折叠的宽度
-$base-left-menu-width: 220px;
+$base-sidebar-open: 220px;
+
+// 纵向左侧导航已折叠的宽度
+$base-sidebar-close: 80px;
 
 // 默认动画
 // transition-timing-function: cubic-bezier()该属性用于描述属性的中间值。即该两个状态变化的过渡曲线

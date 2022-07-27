@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { SIDEBAR_REDUCER } from '@/store/rootReducer';
 
 const menuItems = [
   {
@@ -163,6 +165,7 @@ const VerticalMenu: React.FC = () => {
     setCurrent(key);
     navigate(key);
   };
+  const { open } = useSelector((store) => store[SIDEBAR_REDUCER]);
   return (
     // defaultSelectedKeys	初始选中的菜单项 key 数组
     // selectedKeys 当前选中的菜单项 key 数组
@@ -179,6 +182,7 @@ const VerticalMenu: React.FC = () => {
       openKeys={openKeys}
       selectedKeys={[current]}
       onClick={goPage}
+      inlineCollapsed={!open}
     />
   );
 };
