@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
-import ErrorBoundary from '@/components/error-boundary';
-import { FullPageErrorFallback } from '@/components/error-boundary/lib';
 // 引入全局阿里图标库
 import '@/assets/font/iconfont.css';
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './store';
 
 ReactDOM.render(
   // StrictMode会开启 react 中的严格模式
@@ -14,9 +14,9 @@ ReactDOM.render(
   // findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead,
   // add a ref directly to the element you want to reference. Learn more about using refs safely here
   // <React.StrictMode>
-  <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+  <ReduxProvider store={store}>
     <App />
-  </ErrorBoundary>,
+  </ReduxProvider>,
   // </React.StrictMode>,
   document.getElementById('root'),
 );

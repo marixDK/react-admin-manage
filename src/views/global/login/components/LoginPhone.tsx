@@ -15,7 +15,6 @@ let timer;
 const LoginPhone: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   const fetchVerify = () => {
-    // console.log('运行了');
     setTime(60);
     // 注意，不要使用 setTime(time-1) ： 闭包问题会导致time一直为-1
     // 通过回调函数来调用，回调函数返回的是最新的 state
@@ -26,11 +25,11 @@ const LoginPhone: React.FC = () => {
       clearInterval(timer);
       setTime(0);
     }
-    // return 返回一个清理函数，
-    // 1.在组件被销毁之前执行
-    // 2.会在执行当前 effect 之前对上一个 effect 进行清除
+    // 解绑副作用，return返回一个清理函数
+    // 如果第二个参数是空数组，清理函数在组件被销毁之前执行
+    // 如果第二个参数不是空数组，只要状态变化，会在执行当前副作用之前，清理上一个副作用
     return () => {
-      console.log('清除定时器');
+      // console.log('清除定时器');
       clearInterval(timer);
     };
   }, [time]);
