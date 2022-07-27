@@ -36,20 +36,40 @@
 
   // 主体内容区域
   .app-main {
+    flex: 1;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: var(--el-bg-color);
     .app-nav {
-      .hamburger {
+      box-sizing: border-box;
+      height: $base-nav-height;
+      overflow: hidden;
+      border-bottom: 1px solid #f6f6f6;
+      padding: 0 20px;
+      position: relative;
+      .nav-row {
         height: 100%;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        margin-right: 16px;
-        .hamburger-icon {
-          display: inline-block;
-          vertical-align: middle;
-          width: 20px;
-          height: 20px;
-          &.is-active {
-            transform: rotate(180deg);
+        .left-panel {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          height: 100%;
+          .hamburger {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 16px;
+            .hamburger-icon {
+              display: inline-block;
+              vertical-align: middle;
+              width: 20px;
+              height: 20px;
+              &.is-active {
+                transform: rotate(180deg);
+              }
+            }
           }
         }
       }
