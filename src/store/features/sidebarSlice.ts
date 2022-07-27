@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { handleSessionStorage } from '@/utils/storage';
 
-export interface SidebarState {
+interface SidebarState {
   opened: boolean;
 }
 

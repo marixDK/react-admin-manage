@@ -1,5 +1,5 @@
-@mixin sidebar-style($width, $position:relative) {
-  // 展开的侧边栏
+@mixin sidebar-style($width, $position: relative) {
+  // 侧边栏
   .app-sidebar {
     height: 100%;
     transition: wdith 0.28s;
@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     .sidebar-logo {
-      height:  50px;
+      height: 50px;
       display: flex;
       justify-content: center;
       // 空间不足换行
@@ -31,6 +31,28 @@
       max-height: calc(100% - 50px);
       // 超出不隐藏，滚动条效果
       overflow: auto;
+    }
+  }
+
+  // 主体内容区域
+  .app-main {
+    .app-nav {
+      .hamburger {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 16px;
+        .hamburger-icon {
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          &.is-active {
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
   }
 }
