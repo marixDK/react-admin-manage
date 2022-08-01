@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import Hamburger from './Hamburger';
-import NavBreadcrumb from './Breadcrumb';
+import NavBreadcrumb from './breadcrumb';
 
 const AppNav: React.FC = () => {
   return (

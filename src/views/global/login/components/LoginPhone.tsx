@@ -64,7 +64,7 @@ const LoginPhone: React.FC = () => {
               style={{ width: '100%' }}
               disabled={!!time}
               onClick={fetchVerify}>
-              {time ? `${time}s` : '获取验证码'}
+              {time ? `${time}s后重发` : '获取验证码'}
             </Button>
           </Col>
         </Row>
